@@ -71,7 +71,10 @@ from oauth2client.util import positional
 
 
 # The client library requires a version of httplib2 that supports RETRIES.
-httplib2.RETRIES = 1
+# RETRIES was originally set to one to avoid having calls to the Google APIs,
+# which might cost money, transparently retried. However, this can break
+# functionality that depends on the httplib2 default of RETRIES = 2.
+# httplib2.RETRIES = 1
 
 logger = logging.getLogger(__name__)
 
